@@ -21,6 +21,7 @@ import string
 import numpy as np
 import matplotlib.pyplot as plt
 
+
 class VoltageData:
     def __init__(self,times,voltages,errors=None):
         times=np.array(times)
@@ -45,6 +46,28 @@ class VoltageData:
             yield self._data[i, :]
             #yield ritorna il generatore
 '''
+
+class Animal:
+    def __init__(self,x,y,z):
+        self.x=x
+        self.y=y
+        self.z=z
+        '''
+    def __iter__(self):
+        a=np.array([self.x,self.y,self.z])
+        for i in a:
+            yield i
+            '''
+    def __iter__(self):
+        yield self.x
+    def __next__(self):
+        a=np.array([self.x,self.y,self.z])
+        if self.x <3:
+            x=self.x
+            self.x +=1
+            return a[0]
+        else:
+            raise StopIteration
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(description='Print some book statistics')
@@ -59,6 +82,10 @@ if __name__ == '__main__':
     print(len(data))
     for i in data._data:
         print(i)
+    prova=Animal((1.,2.,3.),5,6)
+    for i in prova:
+        print (i)
+
 
 
 
